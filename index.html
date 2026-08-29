@@ -598,6 +598,7 @@ html,body{
 
 /* ── HERO SPLIT ── */
 #card-0{flex-direction:row!important;justify-content:flex-start!important;align-items:stretch!important;height:100vh;height:100dvh;}
+@media(max-width:640px){#card-0{flex-direction:column!important;align-items:flex-start!important;overflow-y:auto!important;}}
 
 .slideshow{
   position:relative;
@@ -647,12 +648,13 @@ html,body{
     flex:none!important;
     width:calc(100% - 24px)!important;
     height:auto!important;
+    max-height:45vh!important;
     border-radius:16px!important;
     margin:12px auto 0!important;
     overflow:hidden!important;
   }
 
-  .slideshow.ratio-portrait{aspect-ratio:9/16;}
+  .slideshow.ratio-portrait{aspect-ratio:9/16;max-height:55vh!important;}
   .slideshow.ratio-landscape{aspect-ratio:16/9;}
 
   .slide{background-size:cover;background-position:center;}
