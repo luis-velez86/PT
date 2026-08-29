@@ -98,78 +98,17 @@ html,body{
   overflow:hidden;
 }
 
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:opacity 1.4s ease;
-}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateX(100%);transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);}
 
-.slide.active{
-  opacity:1;
-  animation:kb 10s ease-in-out alternate infinite;
-}
+.slide.active{transform:translateX(0);}
+.slide.prev{transform:translateX(-100%);}
 
-@keyframes kb{
-  from{transform:scale(1);}
+
   to{transform:scale(1.07);}
 }
 
-.slide-a{
-  background:
-    radial-gradient(ellipse 55% 70% at 25% 55%,rgba(201,168,76,0.14) 0%,transparent 65%),
-    radial-gradient(ellipse 40% 40% at 80% 20%,rgba(6,95,70,0.12) 0%,transparent 55%),
-    linear-gradient(160deg,#08111F 0%,#0D1E38 50%,#080F1A 100%);
-}
-.slide-a::before{
-  content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(
-    -48deg,transparent,transparent 60px,
-    rgba(201,168,76,0.025) 60px,rgba(201,168,76,0.025) 61px
-  );
-}
-.slide-a::after{
-  content:'';position:absolute;
-  top:15%;left:8%;width:55%;height:65%;
-  border:1px solid rgba(201,168,76,0.1);
-  transform:rotate(6deg);
-}
 
-.slide-b{
-  background:
-    radial-gradient(ellipse 60% 50% at 70% 35%,rgba(6,95,70,0.22) 0%,transparent 60%),
-    radial-gradient(ellipse 35% 50% at 15% 75%,rgba(201,168,76,0.09) 0%,transparent 50%),
-    #070D19;
-}
-.slide-b::before{
-  content:'';position:absolute;
-  top:0;left:55%;
-  width:1px;height:100%;
-  background:linear-gradient(to bottom,transparent,rgba(16,185,129,0.25),transparent);
-}
-.slide-b::after{
-  content:'';position:absolute;
-  bottom:20%;right:15%;
-  width:120px;height:120px;
-  border:1px solid rgba(16,185,129,0.12);
-  border-radius:50%;
-  box-shadow:0 0 0 30px rgba(16,185,129,0.04),0 0 0 60px rgba(16,185,129,0.02);
-}
 
-.slide-c{
-  background:
-    radial-gradient(ellipse 50% 60% at 50% 110%,rgba(6,95,70,0.18) 0%,transparent 55%),
-    radial-gradient(ellipse 45% 45% at 85% 15%,rgba(201,168,76,0.12) 0%,transparent 50%),
-    radial-gradient(ellipse 30% 30% at 10% 50%,rgba(6,95,70,0.08) 0%,transparent 50%),
-    #06101E;
-}
-.slide-c::before{
-  content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(
-    90deg,transparent,transparent 80px,
-    rgba(201,168,76,0.015) 80px,rgba(201,168,76,0.015) 81px
-  );
-}
 
 .hero-overlay{
   position:absolute;inset:0;
@@ -266,18 +205,9 @@ html,body{
   display:flex;gap:8px;
 }
 
-.pip{
-  width:18px;height:2px;
-  background:rgba(240,237,230,0.25);
-  border-radius:1px;
-  cursor:pointer;
-  transition:all 0.3s;
-}
+.pip{width:4px;height:4px;border-radius:50%;background:rgba(240,237,230,0.25);border:1px solid rgba(240,237,230,0.3);cursor:pointer;transition:all 0.3s;}
 
-.pip.active{
-  background:var(--gold);
-  width:30px;
-}
+.pip.active{background:var(--gold);border-color:var(--gold);width:12px;border-radius:2px;}
 
 /* ── VIDEO CARDS ── */
 .vcard{
@@ -706,9 +636,21 @@ html,body{
   <!-- CARD 0: HERO -->
   <div class="card" id="card-0">
     <div class="slideshow">
-      <div class="slide slide-a active"></div>
-      <div class="slide slide-b"></div>
-      <div class="slide slide-c"></div>
+      <div class="slide active" style="background-image:url(img/s01.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s02.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s03.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s04.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s05.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s06.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s07.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s08.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s09.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s10.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s11.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s12.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s13.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s14.jpg)"></div>
+      <div class="slide" style="background-image:url(img/s15.jpg)"></div>
     </div>
     <div class="hero-overlay">
       <div class="hero-eyebrow">Luis Vélez · Gira LATAM Internacional</div>
@@ -723,6 +665,18 @@ html,body{
       <div class="pip active" data-s="0"></div>
       <div class="pip" data-s="1"></div>
       <div class="pip" data-s="2"></div>
+      <div class="pip" data-s="3"></div>
+      <div class="pip" data-s="4"></div>
+      <div class="pip" data-s="5"></div>
+      <div class="pip" data-s="6"></div>
+      <div class="pip" data-s="7"></div>
+      <div class="pip" data-s="8"></div>
+      <div class="pip" data-s="9"></div>
+      <div class="pip" data-s="10"></div>
+      <div class="pip" data-s="11"></div>
+      <div class="pip" data-s="12"></div>
+      <div class="pip" data-s="13"></div>
+      <div class="pip" data-s="14"></div>
     </div>
   </div>
 
@@ -947,79 +901,21 @@ function onState(e, num) {
 
 function startTrack(num) {
   if (timers[num]) return;
-  timers[num] = setInterval(function() { track(num); }, 2000);
-}
-
-function stopTrack(num) {
-  clearInterval(timers[num]);
-  timers[num] = null;
-}
-
-function track(num) {
-  var p = players[num];
-  if (!p || !p.getCurrentTime) return;
-  var t = p.getCurrentTime();
-  var d = p.getDuration();
-  if (!d || d === 0) return;
-  var pct = Math.round((t / d) * 100);
-  setProgress(num, pct);
-  if (pct >= UMBRAL && !done[num]) {
-    done[num] = true;
-    localStorage.setItem(LS_KEYS['v' + num], '1');
-    complete(num);
-  }
-}
-
-function setProgress(num, pct) {
-  var vp = document.getElementById('vp-' + num);
-  var pf = document.getElementById('pf-' + num);
-  var pc = document.getElementById('pct-' + num);
-  if (vp) vp.style.width = pct + '%';
-  if (pf) pf.style.width = pct + '%';
-  if (pc) pc.textContent = pct + '%';
-}
-
-function complete(num) {
-  stopTrack(num);
-  var bn = document.getElementById('bn-' + num);
-  if (bn) bn.classList.add('on');
-  setProgress(num, 100);
-  if (num < 3) {
-    notif('🔓 Video ' + num + ' concluído — continue para o próximo');
-  } else {
-    notif('🎉 Parabéns! Você concluiu os 3 vídeos');
-  }
-}
-
-// Restore state on load
-function restore() {
-  if (done[1]) complete(1);
-  if (done[2]) complete(2);
-  if (done[3]) complete(3);
-}
-
-// ── SLIDESHOW
-var slides = document.querySelectorAll('.slide');
-var pips = document.querySelectorAll('.pip');
-var si = 0;
-
-setInterval(function() {
+  timers[num] = function goSlide(n){
+  if(n===si)return;
   slides[si].classList.remove('active');
+  slides[si].classList.add('prev');
   pips[si].classList.remove('active');
-  si = (si + 1) % slides.length;
+  si=((n%slides.length)+slides.length)%slides.length;
   slides[si].classList.add('active');
   pips[si].classList.add('active');
-}, 5000);
-
-pips.forEach(function(p) {
-  p.addEventListener('click', function() {
-    slides[si].classList.remove('active');
-    pips[si].classList.remove('active');
-    si = parseInt(this.dataset.s);
-    slides[si].classList.add('active');
-    pips[si].classList.add('active');
-  });
-});
+  setTimeout(function(){document.querySelectorAll('.slide.prev').forEach(function(s){s.classList.remove('prev');});},900);
+}
+setInterval(function(){goSlide(si+1);},5000);
+pips.forEach(function(p){p.addEventListener('click',function(){goSlide(parseInt(this.dataset.s));});});
+var hx0=0;
+document.querySelector('.slideshow').addEventListener('touchstart',function(e){if(cur===0)hx0=e.touches[0].clientX;},{passive:true});
+document.querySelector('.slideshow').addEventListener('touchend',function(e){if(cur!==0)return;var dx=hx0-e.changedTouches[0].clientX;if(Math.abs(dx)>40){goSlide(dx>0?si+1:si-1);}},{passive:true});
 
 // ── NOTIF
 function notif(msg) {
