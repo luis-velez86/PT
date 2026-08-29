@@ -92,13 +92,9 @@ html,body{
 /* ── HERO ── */
 #card-0{background:var(--navy);}
 
-.slideshow{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-}
+.slideshow{position:relative;width:100%;flex:0 0 58%;border-radius:0 0 28px 28px;overflow:hidden;}
 
-.slide{position:absolute;inset:0;background-size:cover;background-position:center top;transform:translateX(100%);transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);filter:brightness(0.75);}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center top;transform:translateX(100%);transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);filter:brightness(0.85);}
 
 .slide.active{transform:translateX(0);}
 .slide.prev{transform:translateX(-100%);}
@@ -626,7 +622,7 @@ html,body{
 <div class="deck" id="deck">
 
   <!-- CARD 0: HERO -->
-  <div class="card" id="card-0">
+  <div class="card" id="card-0" style="flex-direction:column;justify-content:flex-start;">
     <div class="slideshow">
       <div class="slide active" style="background-image:url(img/s01.jpg)"></div>
       <div class="slide" style="background-image:url(img/s02.jpg)"></div>
@@ -906,8 +902,7 @@ function startTrack(num) {
 setInterval(function(){goSlide(si+1);},5000);
 pips.forEach(function(p){p.addEventListener('click',function(){goSlide(parseInt(this.dataset.s));});});
 var hx0=0;
-document.querySelector('.slideshow').addEventListener('touchstart',function(e){if(cur===0)hx0=e.touches[0].clientX;},{passive:true});
-document.querySelector('.slideshow').addEventListener('touchend',function(e){if(cur!==0)return;var dx=hx0-e.changedTouches[0].clientX;if(Math.abs(dx)>40){goSlide(dx>0?si+1:si-1);}},{passive:true});
+var hx0=0;
 
 // ── NOTIF
 function notif(msg) {
@@ -918,7 +913,7 @@ function notif(msg) {
 }
 
 // ── INIT
-window.addEventListener('wheel',function(e){if(moving)return;if(e.deltaY>30)goTo(Math.min(cur+1,4));else if(e.deltaY<-30)goTo(Math.max(cur-1,0));},{passive:true});var ty0=0;window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});window.addEventListener('touchend',function(e){var dy=ty0-e.changedTouches[0].clientY;if(Math.abs(dy)>50){if(dy>0)goTo(Math.min(cur+1,4));else goTo(Math.max(cur-1,0));}},{passive:true});
+window.addEventListener('wheel',function(e){if(moving)return;if(e.deltaY>30)goTo(Math.min(cur+1,4));else if(e.deltaY<-30)goTo(Math.max(cur-1,0));},{passive:true});var ty0=0;window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;hx0=e.touches[0].clientX;},{passive:true});window.addEventListener('touchend',function(e){var dy=ty0-e.changedTouches[0].clientY;var dx=hx0-e.changedTouches[0].clientX;if(cur===0&&Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){goSlide(dx>0?si+1:si-1);}else if(Math.abs(dy)>50){if(dy>0)goTo(Math.min(cur+1,4));else goTo(Math.max(cur-1,0));}},{passive:true});
 restore();
 </script>
 </body>
