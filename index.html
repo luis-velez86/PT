@@ -595,6 +595,75 @@ html,body{
   .vwrap{max-width:900px;}
   .hero-h1{font-size:72px;}
 }
+
+/* ── HERO SPLIT ── */
+#card-0{flex-direction:row!important;justify-content:flex-start!important;align-items:stretch!important;}
+
+.slideshow{
+  position:relative;
+  flex:0 0 50%;
+  height:100%;
+  overflow:hidden;
+  border-radius:0;
+  background:var(--navy-card);
+}
+
+.slide{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transform:translateX(100%);
+  transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);
+}
+.slide.active{transform:translateX(0);}
+.slide.prev{transform:translateX(-100%);}
+
+.hero-overlay{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:40px 48px;
+  text-align:center;
+  background:var(--navy);
+  position:relative;
+}
+
+.slide-pips{
+  position:absolute;
+  bottom:20px;left:0;right:0;
+  display:flex;gap:6px;
+  justify-content:center;
+}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  #card-0{flex-direction:column!important;align-items:center!important;}
+
+  .slideshow{
+    flex:none!important;
+    width:calc(100% - 24px)!important;
+    height:auto!important;
+    border-radius:16px!important;
+    margin:12px auto 0!important;
+    overflow:hidden!important;
+  }
+
+  .slideshow.ratio-portrait{aspect-ratio:9/16;}
+  .slideshow.ratio-landscape{aspect-ratio:16/9;}
+
+  .slide{background-size:cover;background-position:center;}
+
+  .hero-overlay{
+    flex:1!important;
+    width:100%!important;
+    padding:16px 20px 60px!important;
+  }
+
+  .slide-pips{bottom:8px;}
+}
 </style>
 </head>
 <body>
@@ -612,24 +681,8 @@ html,body{
 <div class="deck" id="deck">
 
   <!-- CARD 0: HERO -->
-  <div class="card" id="card-0" style="flex-direction:column;justify-content:flex-start;">
-    <div class="slideshow">
-      <div class="slide active" style="background-image:url(img/s01.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s02.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s03.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s04.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s05.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s06.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s07.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s08.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s09.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s10.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s11.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s12.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s13.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s14.jpg)"></div>
-      <div class="slide" style="background-image:url(img/s15.jpg)"></div>
-    </div>
+  <div class="card" id="card-0">
+    <div class="slideshow" id="slideshow"></div>
     <div class="hero-overlay">
       <div class="hero-eyebrow">Luis Vélez · Gira LATAM Internacional</div>
       <h1 class="hero-h1">Aprenda a gerar<br><em>renda pela internet</em><br>do zero</h1>
@@ -639,26 +692,10 @@ html,body{
         <svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg>
       </button>
     </div>
-    <div class="slide-pips" id="pips">
-      <div class="pip active" data-s="0"></div>
-      <div class="pip" data-s="1"></div>
-      <div class="pip" data-s="2"></div>
-      <div class="pip" data-s="3"></div>
-      <div class="pip" data-s="4"></div>
-      <div class="pip" data-s="5"></div>
-      <div class="pip" data-s="6"></div>
-      <div class="pip" data-s="7"></div>
-      <div class="pip" data-s="8"></div>
-      <div class="pip" data-s="9"></div>
-      <div class="pip" data-s="10"></div>
-      <div class="pip" data-s="11"></div>
-      <div class="pip" data-s="12"></div>
-      <div class="pip" data-s="13"></div>
-      <div class="pip" data-s="14"></div>
-    </div>
+    <div class="slide-pips" id="pips"></div>
   </div>
 
-  <!-- CARD 1: VIDEO 1 -->
+    <!-- CARD 1: VIDEO 1 -->
   <div class="card" id="card-1">
     <div class="vcard">
       <div class="topbar">
@@ -955,6 +992,78 @@ function notif(msg) {
   n.textContent=msg; n.classList.add('on');
   setTimeout(function(){ n.classList.remove('on'); },3500);
 }
+
+
+// ── SLIDESHOW SETUP
+var allSlides = [
+  {src:'img/s09.jpg',ratio:'portrait'},
+  {src:'img/s10.jpg',ratio:'landscape'},
+];
+var pool = [
+  {src:'img/s01.jpg',ratio:'portrait'},
+  {src:'img/s02.jpg',ratio:'landscape'},
+  {src:'img/s03.jpg',ratio:'landscape'},
+  {src:'img/s04.jpg',ratio:'landscape'},
+  {src:'img/s05.jpg',ratio:'landscape'},
+  {src:'img/s06.jpg',ratio:'portrait'},
+  {src:'img/s07.jpg',ratio:'portrait'},
+  {src:'img/s08.jpg',ratio:'portrait'},
+  {src:'img/s11.jpg',ratio:'portrait'},
+  {src:'img/s12.jpg',ratio:'portrait'},
+  {src:'img/s13.jpg',ratio:'portrait'},
+  {src:'img/s14.jpg',ratio:'portrait'},
+  {src:'img/s15.jpg',ratio:'landscape'},
+];
+// shuffle pool
+for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
+allSlides = allSlides.concat(pool);
+
+var ss = document.querySelector('.slideshow');
+var pipsWrap = document.getElementById('pips');
+pipsWrap.innerHTML = '';
+ss.innerHTML = '';
+
+allSlides.forEach(function(s,i){
+  var div = document.createElement('div');
+  div.className = 'slide' + (i===0?' active':'');
+  div.style.backgroundImage = 'url('+s.src+')';
+  div.dataset.ratio = s.ratio;
+  ss.appendChild(div);
+
+  var pip = document.createElement('div');
+  pip.className = 'pip' + (i===0?' active':'');
+  pip.dataset.s = i;
+  pipsWrap.appendChild(pip);
+});
+
+var slides = document.querySelectorAll('.slide');
+var pips = document.querySelectorAll('.pip');
+var si = 0;
+
+function setRatio(ratio){
+  ss.classList.remove('ratio-portrait','ratio-landscape');
+  ss.classList.add('ratio-'+ratio);
+}
+setRatio(allSlides[0].ratio);
+
+function goSlide(n){
+  if(n===si) return;
+  slides[si].classList.remove('active');
+  slides[si].classList.add('prev');
+  pips[si].classList.remove('active');
+  si=((n%slides.length)+slides.length)%slides.length;
+  slides[si].classList.add('active');
+  pips[si].classList.add('active');
+  setRatio(allSlides[si].ratio);
+  setTimeout(function(){
+    document.querySelectorAll('.slide.prev').forEach(function(s){s.classList.remove('prev');});
+  },900);
+}
+
+setInterval(function(){goSlide(si+1);},5000);
+document.querySelectorAll('.pip').forEach(function(p){
+  p.addEventListener('click',function(){goSlide(parseInt(this.dataset.s));});
+});
 
 restore();
 </script>
