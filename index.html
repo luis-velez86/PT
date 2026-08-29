@@ -98,27 +98,19 @@ html,body{
   overflow:hidden;
 }
 
-.slide{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateX(100%);transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center top;transform:translateX(100%);transition:transform 0.8s cubic-bezier(0.76,0,0.24,1);filter:brightness(0.75);}
 
 .slide.active{transform:translateX(0);}
 .slide.prev{transform:translateX(-100%);}
 
 
-  to{transform:scale(1.07);}
-}
 
 
 
 
 .hero-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(8,14,28,0.2) 0%,
-    rgba(8,14,28,0.05) 35%,
-    rgba(8,14,28,0.6) 70%,
-    rgba(8,14,28,0.96) 100%
-  );
+  background:linear-gradient(to bottom,rgba(8,14,28,0.55) 0%,rgba(8,14,28,0.45) 35%,rgba(8,14,28,0.75) 70%,rgba(8,14,28,0.97) 100%);
   display:flex;
   flex-direction:column;
   align-items:center;
