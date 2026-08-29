@@ -504,15 +504,10 @@ html,body{
 
 .wa-hint span{color:var(--emerald-glow);}
 
-.testimonio{
-  text-align:left;
-  padding:18px 20px;
-  background:rgba(17,31,58,0.7);
-  border:1px solid rgba(201,168,76,0.08);
-  border-left:2px solid var(--gold);
-  border-radius:1px;
-  width:100%;
-}
+.testimonios{width:100%;display:flex;flex-direction:column;gap:12px;}
+.testimonio{display:flex;gap:16px;align-items:flex-start;background:rgba(17,31,58,0.7);border:1px solid rgba(201,168,76,0.08);border-radius:12px;padding:16px;width:100%;}
+.tphoto{width:72px;height:90px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--navy-surface);}
+.tcontent{flex:1;display:flex;flex-direction:column;gap:6px;}
 
 .tq{
   font-size:12px;
@@ -777,11 +772,11 @@ html,body{
         Escrever para Luis
       </a>
       <p class="wa-hint">Mensaje automático: <span>"Olá Luis, assisti todos os vídeos e estou pronto ✅"</span></p>
-      <div class="testimonio">
-        <p class="tq">"Eu tinha mais de 50 anos e achava que o trading não era para mim. Luis me ensinou passo a passo e hoje retirei meus primeiros resultados reais."</p>
-        <div class="ta">
-          <div class="tav">A</div>
-          <div>
+      <div class="testimonios">
+        <div class="testimonio">
+          <img class="tphoto" src="img/albita.jpg" alt="Albita">
+          <div class="tcontent">
+            <p class="tq">"Eu tinha mais de 50 anos e achava que o trading não era para mim. Luis me ensinou passo a passo e hoje retirei meus primeiros resultados reais."</p>
             <span class="tn">Albita</span>
             <span class="td">Loja, Equador · Membro da comunidade</span>
             <div class="badge">✅ Primeiro saque: $1.478</div>
