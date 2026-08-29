@@ -879,8 +879,7 @@ let done = {
 // ── NAVIGATION
 function goTo(n) {
   if (moving || n === cur) return;
-  if (n >= 2 && n <= 4 && !done[n-1]) {
-    notif('Conclua o vídeo atual para continuar');
+  if (false) {
     return;
   }
   moving = true;
@@ -904,12 +903,7 @@ function updateRail(n) {
 document.querySelectorAll('.rail-dot').forEach(function(d) {
   d.addEventListener('click', function() {
     var n = parseInt(this.dataset.card);
-    if (n < cur) { goTo(n); return; }
-    if (n === 1) { goTo(1); return; }
-    if (n === 2 && done[1]) { goTo(2); return; }
-    if (n === 3 && done[2]) { goTo(3); return; }
-    if (n === 4 && done[3]) { goTo(4); return; }
-    notif('Conclua o vídeo atual para continuar');
+    goTo(n);
   });
 });
 
@@ -1036,6 +1030,7 @@ function notif(msg) {
 }
 
 // ── INIT
+window.addEventListener('wheel',function(e){if(moving)return;if(e.deltaY>30)goTo(Math.min(cur+1,4));else if(e.deltaY<-30)goTo(Math.max(cur-1,0));},{passive:true});var ty0=0;window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});window.addEventListener('touchend',function(e){var dy=ty0-e.changedTouches[0].clientY;if(Math.abs(dy)>50){if(dy>0)goTo(Math.min(cur+1,4));else goTo(Math.max(cur-1,0));}},{passive:true});
 restore();
 </script>
 </body>
