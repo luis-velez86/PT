@@ -98,6 +98,8 @@ html,body{
 
 .slide.active{transform:translateX(0);}
 .slide.prev{transform:translateX(-100%);}
+.slideshow.ratio-landscape .slide{background-size:contain;background-position:center;background-color:#000;}
+.slideshow.ratio-portrait .slide{background-size:cover;background-position:center top;}
 
 
 
@@ -577,13 +579,33 @@ html,body{
 
 /* ── RESPONSIVE ── */
 @media(max-width:640px){
-  .hero-h1{font-size:32px;}
-  .hero-overlay{padding:0 20px max(88px, env(safe-area-inset-bottom) + 72px);}
-  .topbar-title{display:none;}
-  .prog-bar{width:80px;}
-  .bottombar,.topbar{padding:0 14px;}
-  .cta-box{padding:28px 18px;gap:12px;}
-  .cta-h2{font-size:28px;}
+  #card-0{
+    flex-direction:column!important;
+    align-items:center!important;
+    position:relative!important;
+    overflow:hidden!important;
+  }
+  .hero-overlay{
+    position:absolute!important;
+    bottom:0!important;left:0!important;right:0!important;
+    height:auto!important;
+    padding:16px 20px 52px!important;
+    background:linear-gradient(to bottom,transparent,rgba(10,22,40,0.97) 30%)!important;
+    justify-content:flex-end!important;
+    z-index:2!important;
+  }
+  .slideshow{
+    position:absolute!important;
+    top:12px!important;left:12px!important;right:12px!important;
+    bottom:0!important;
+    height:auto!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    z-index:1!important;
+  }
+  .slideshow.ratio-portrait .slide{background-size:contain!important;background-position:top center!important;}
+  .slideshow.ratio-landscape .slide{background-size:contain!important;background-position:center!important;}
+  .slide-pips{position:absolute!important;bottom:8px!important;z-index:3!important;}
 }
 
 @media(min-width:641px) and (max-width:1024px){
@@ -620,6 +642,8 @@ html,body{
 }
 .slide.active{transform:translateX(0);}
 .slide.prev{transform:translateX(-100%);}
+.slideshow.ratio-landscape .slide{background-size:contain;background-position:center;background-color:#000;}
+.slideshow.ratio-portrait .slide{background-size:cover;background-position:center top;}
 
 .hero-overlay{
   flex:1;
