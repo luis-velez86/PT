@@ -673,35 +673,31 @@ html,body{
     overflow:hidden!important;
     margin:12px auto 0!important;
     background:var(--navy)!important;
-  }
-
-  .slideshow.ratio-portrait{
-    width:calc(100% - 24px)!important;
-    height:calc((100vw - 24px) * 16 / 9)!important;
-    max-height:60vh!important;
-  }
-  .slideshow.ratio-landscape{
-    width:calc(100% - 24px)!important;
-    height:calc((100vw - 24px) * 9 / 16)!important;
-    max-height:40vh!important;
+    position:relative!important;
+    height:auto!important;
   }
 
   .slideshow .slide{
     position:relative!important;
+    inset:auto!important;
     width:100%!important;
-    height:100%!important;
-    opacity:1!important;
+    height:auto!important;
+    opacity:0!important;
+    display:none!important;
     z-index:auto!important;
   }
 
-  .slideshow .slide.active{display:block!important;}
-  .slideshow .slide:not(.active){display:none!important;}
+  .slideshow .slide.active{
+    opacity:1!important;
+    display:block!important;
+  }
 
   .slideshow .slide img{
-    object-fit:contain!important;
-    object-position:center!important;
     width:100%!important;
-    height:100%!important;
+    height:auto!important;
+    display:block!important;
+    object-fit:unset!important;
+    border-radius:16px!important;
   }
 
   .hero-overlay{
