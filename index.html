@@ -1096,6 +1096,7 @@ allSlides.forEach(function(s,i){
 var slides = document.querySelectorAll('.slide');
 var pips = document.querySelectorAll('.pip');
 var si = 0;
+ss.classList.add('ratio-'+allSlides[0].ratio);
 
 
 
@@ -1107,6 +1108,8 @@ function goSlide(n){
   si=((n%slides.length)+slides.length)%slides.length;
   slides[si].classList.add('active');
   pips[si].classList.add('active');
+  ss.classList.remove('ratio-portrait','ratio-landscape');
+  ss.classList.add('ratio-'+allSlides[si].ratio);
   setTimeout(function(){
     document.querySelectorAll('.slide.prev').forEach(function(s){s.classList.remove('prev');});
   },950);
