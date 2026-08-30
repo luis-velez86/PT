@@ -157,7 +157,7 @@ html,body{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  background:var(--gold);
+  background:var(--emerald-bright);
   color:var(--navy);
   font-family:'Oswald',sans-serif;
   font-size:13px;
@@ -172,7 +172,7 @@ html,body{
 }
 
 .btn-start:hover{
-  background:var(--gold-light);
+  background:var(--emerald-glow);
   transform:translateY(-2px);
   box-shadow:0 14px 40px rgba(201,168,76,0.28);
 }
@@ -691,6 +691,28 @@ html,body{
 
 @media(min-width:641px){
 }
+
+.scroll-arrow{
+  display:none;
+  justify-content:center;
+  padding:10px 0 4px;
+  background:var(--navy-card);
+}
+.scroll-arrow.on{display:flex;}
+.scroll-arrow svg{
+  width:26px;height:26px;
+  stroke:var(--emerald-bright);
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  animation:arrowFloat 2.4s ease-in-out infinite;
+}
+@keyframes arrowFloat{
+  0%{transform:translateY(0);opacity:0.5;}
+  50%{transform:translateY(8px);opacity:1;}
+  100%{transform:translateY(0);opacity:0.5;}
+}
 </style>
 </head>
 <body>
@@ -821,6 +843,7 @@ html,body{
           <svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg>
         </button>
       </div>
+      <div class="scroll-arrow" id="scrollArrow"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
     </div>
   </div>
 
@@ -959,6 +982,10 @@ function complete(num) {
   var bn=document.getElementById('bn-'+num);
   if(bn) bn.classList.add('on');
   setProgress(num,100);
+  if(num===3){
+    var arrow=document.getElementById('scrollArrow');
+    if(arrow) arrow.classList.add('on');
+  }
 }
 
 function restore() {
