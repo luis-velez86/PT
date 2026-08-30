@@ -613,12 +613,16 @@ html,body{
   background:var(--navy);
   position:relative;
 }
-.slide-pips{
-  position:absolute;
-  bottom:20px;left:0;right:0;
-  display:flex;gap:6px;
-  justify-content:center;
-}
+  .slide-pips{
+    order:3!important;
+    position:relative!important;
+    bottom:auto!important;
+    margin-top:14px!important;
+    padding-bottom:max(8px, env(safe-area-inset-bottom))!important;
+  }
+  .hero-sub{
+    margin:0 auto 20px!important;
+  }
 
 /* ── HERO MOBILE: UN SOLO CONTENEDOR FIJO ── */
 @media(max-width:640px){
