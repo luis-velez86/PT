@@ -620,7 +620,7 @@ html,body{
   justify-content:center;
 }
 
-/* ── HERO MOBILE: DOS CONTENEDORES FIJOS ── */
+/* ── HERO MOBILE: UN SOLO CONTENEDOR FIJO ── */
 @media(max-width:640px){
   #card-0{
     flex-direction:column!important;
@@ -628,7 +628,6 @@ html,body{
     position:relative!important;
     overflow:hidden!important;
   }
-
   .hero-overlay{
     order:2!important;
     position:relative!important;
@@ -638,21 +637,27 @@ html,body{
     background:var(--navy)!important;
     justify-content:center!important;
   }
-
-  .ss-portrait,.ss-landscape{
+  .hero-image-box{
     order:1!important;
-    display:none;
-    overflow:hidden;
-    border-radius:16px;
-    background:var(--navy);
-    margin:12px auto 0;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:calc(100% - 24px)!important;
+    height:48vh!important;
+    margin:12px auto 0!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    background:var(--navy)!important;
   }
-
-  .ss-portrait.on{display:flex;align-items:center;justify-content:center;width:calc(100% - 24px);aspect-ratio:9/16;max-height:52vh;}
-  .ss-landscape.on{display:flex;align-items:center;justify-content:center;width:calc(100% - 24px);aspect-ratio:16/9;}
-
-  .ss-portrait img,.ss-landscape img{width:100%;height:100%;object-fit:cover;display:block;}
-
+  .hero-image-box img{
+    max-width:100%!important;
+    max-height:100%!important;
+    width:auto!important;
+    height:auto!important;
+    object-fit:contain!important;
+    display:block!important;
+  }
+  .ss-portrait,.ss-landscape{display:none!important;}
   .slideshow{display:none!important;}
 
   .slide-pips{
@@ -681,7 +686,6 @@ html,body{
 }
 
 @media(min-width:641px){
-  .ss-portrait,.ss-landscape{display:none!important;}
 }
 </style>
 </head>
@@ -702,8 +706,7 @@ html,body{
   <!-- CARD 0: HERO -->
   <div class="card" id="card-0">
     <div class="slideshow" id="slideshow"></div>
-    <div class="ss-portrait" id="ssPortrait"><img id="imgPortrait" src="" alt=""></div>
-    <div class="ss-landscape" id="ssLandscape"><img id="imgLandscape" src="" alt=""></div>
+    <div class="hero-image-box" id="heroImageBox"><img id="heroImg" src="" alt=""></div>
     <div class="hero-overlay">
       <div class="hero-eyebrow">Luis Vélez · Gira LATAM Internacional</div>
       <h1 class="hero-h1">Aprenda a gerar<br><em>renda pela internet</em><br>do zero</h1>
@@ -1040,30 +1043,14 @@ function resetTimer(){
 var goSlide;
 
 if(isMobile){
-  var ssP = document.getElementById('ssPortrait');
-  var ssL = document.getElementById('ssLandscape');
-  var imgP = document.getElementById('imgPortrait');
-  var imgL = document.getElementById('imgLandscape');
-
-  function showMobileSlide(i){
-    var s = allSlides[i];
-    if(s.ratio === 'portrait'){
-      imgP.src = s.src;
-      ssP.classList.add('on');
-      ssL.classList.remove('on');
-    } else {
-      imgL.src = s.src;
-      ssL.classList.add('on');
-      ssP.classList.remove('on');
-    }
-  }
-  showMobileSlide(0);
+  var heroImg = document.getElementById('heroImg');
+  heroImg.src = allSlides[0].src;
 
   goSlide = function(n){
     if(n===si) return;
     pips[si].classList.remove('active');
     si=((n%allSlides.length)+allSlides.length)%allSlides.length;
-    showMobileSlide(si);
+    heroImg.src = allSlides[si].src;
     pips[si].classList.add('active');
   };
 } else {
