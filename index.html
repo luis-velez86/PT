@@ -675,8 +675,16 @@ html,body{
     background:var(--navy)!important;
   }
 
-  .slideshow.ratio-portrait{aspect-ratio:9/16;}
-  .slideshow.ratio-landscape{aspect-ratio:16/9;}
+  .slideshow.ratio-portrait{
+    width:calc(100% - 24px)!important;
+    height:calc((100vw - 24px) * 16 / 9)!important;
+    max-height:60vh!important;
+  }
+  .slideshow.ratio-landscape{
+    width:calc(100% - 24px)!important;
+    height:calc((100vw - 24px) * 9 / 16)!important;
+    max-height:40vh!important;
+  }
 
   .slideshow .slide{
     position:relative!important;
